@@ -24,7 +24,7 @@ class USDExchangeController(http.Controller):
             if not api_key:
                 return Response("API Key no configurada", status=500)
 
-            serie = "SF60653"
+            serie = "SF43718"
             url = f"https://www.banxico.org.mx/SieAPIRest/service/v1/series/{serie}/datos/{fecha_str}/{fecha_str}/?token={api_key}"
             
             response = requests.get(url)

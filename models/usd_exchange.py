@@ -45,7 +45,7 @@ class BanxicoExchangeRate(models.Model):
                 return
 
             # Crear nuevo registro de tipo de cambio
-            self.env['res.currency.rate'].create({
+            self.env['res.currency.rate'].sudo().create({
                 'currency_id': usd_currency.id,
                 'rate': tasa,
                 'name': fecha.strftime('%Y-%m-%d'),

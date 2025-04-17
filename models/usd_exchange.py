@@ -10,7 +10,7 @@ class BanxicoExchangeRate(models.Model):
 
     @api.model
     def update_usd_exchange_rate(self):
-        url_base = "https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF43718/datos/"
+        url_base = "https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF60653/datos/"
         token = self.env['ir.config_parameter'].sudo().get_param('usd_exchange.banxico_token')
         if not token:
             _logger.error("No se ha configurado el token de Banxico en parámetros del sistema.")
@@ -18,10 +18,6 @@ class BanxicoExchangeRate(models.Model):
 
         # Obtener fecha anterior (día hábil)
         fecha = datetime.now()
-        if fecha.weekday() == 0:  # Lunes, retrocede al viernes
-            fecha -= timedelta(days=3)
-        else:
-            fecha -= timedelta(days=1)
         fecha_str = fecha.strftime('%Y-%m-%d')
 
         url = f"{url_base}{fecha_str}/{fecha_str}/?token={token}"

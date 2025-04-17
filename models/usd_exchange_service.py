@@ -18,10 +18,6 @@ class USDExchangeService(models.Model):
             return
 
         fecha = datetime.now()
-        if fecha.weekday() == 0:
-            fecha -= timedelta(days=3)
-        else:
-            fecha -= timedelta(days=1)
 
         fecha_str = fecha.strftime('%Y-%m-%d')
         url = f"https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF60653/datos/{fecha_str}/{fecha_str}/?token={token}"

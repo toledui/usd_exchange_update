@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data noupdate="1">
 
         <record id="ir_cron_update_usd_exchange_rate" model="ir.cron">
             <field name="name">Actualizar tipo de cambio USD desde Banxico</field>
-            <field name="model_id" ref="base.model_res_currency"/>
+            <field name="model_id" ref="model_usd_exchange_service"/>
             <field name="state">code</field>
             <field name="code">model.update_usd_exchange_rate()</field>
             <field name="user_id" ref="base.user_root"/>

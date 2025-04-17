@@ -13,10 +13,6 @@ class USDExchangeController(http.Controller):
         try:
             # Restar un día hábil (simple)
             fecha = datetime.now()
-            if fecha.weekday() == 0:
-                fecha -= timedelta(days=3)  # lunes → viernes
-            else:
-                fecha -= timedelta(days=1)
 
             fecha_str = fecha.strftime('%Y-%m-%d')
 
@@ -24,7 +20,7 @@ class USDExchangeController(http.Controller):
             if not api_key:
                 return Response("API Key no configurada", status=500)
 
-            serie = "SF43718"
+            serie = "SF60653"
             url = f"https://www.banxico.org.mx/SieAPIRest/service/v1/series/{serie}/datos/{fecha_str}/{fecha_str}/?token={api_key}"
             
             response = requests.get(url)

@@ -39,7 +39,7 @@ class BanxicoExchangeRate(models.Model):
             tasa = round(1 / tipo_cambio, 6)
 
             # Buscar moneda USD
-            usd_currency = self.env['res.currency'].search([('name', '=', 'USD')], limit=1)
+            usd_currency = self.env['res.currency'].sudo().search([('name', '=', 'USD')], limit=1)
             if not usd_currency:
                 _logger.error("No se encontró la moneda USD en el sistema.")
                 return

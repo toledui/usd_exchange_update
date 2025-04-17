@@ -2,6 +2,7 @@ import logging
 import requests
 from datetime import datetime, timedelta
 from odoo import models, api
+from odoo.http import request, Response
 
 _logger = logging.getLogger(__name__)
 
@@ -10,6 +11,7 @@ class BanxicoExchangeRate(models.Model):
 
     @api.model
     def update_usd_exchange_rate(self):
+        _logger.info("🕒 Ejecutando cron update_usd_exchange_rate()")
         url_base = "https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF60653/datos/"
         token = self.env['ir.config_parameter'].sudo().get_param('usd_exchange.banxico_token')
         if not token:

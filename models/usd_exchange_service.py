@@ -12,7 +12,7 @@ class USDExchangeService(models.Model):
 
     @api.model
     def update_usd_exchange_rate(self):
-        token = self.env['ir.config_parameter'].sudo().get_param('usd_exchange.banxico_token')
+        token = self.env['ir.config_parameter'].sudo().get_param('banxico_api_key')
         if not token:
             _logger.error("No se ha configurado el token de Banxico.")
             return
@@ -38,7 +38,7 @@ class USDExchangeService(models.Model):
             self.env['res.currency.rate'].sudo().create({
                 'currency_id': usd_currency.id,
                 'rate': tasa,
-                'name': fecha.strftime('%Y-%m-%d'),
+                'name': fecha.date(),
             })
 
             _logger.info(f"Tipo de cambio USD actualizado correctamente: {tipo_cambio} (tasa: {tasa})")

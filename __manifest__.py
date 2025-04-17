@@ -7,6 +7,7 @@
     'depends': ['base', 'account'],
     'data': [
         'data/ir_cron.xml',
+        'security/ir.model.access.csv',
     ],
     'installable': True,
     'application': False,
